@@ -1,24 +1,17 @@
-import subprocess
-import importlib
-
-required_libraries = [
-    'torch', 'pyaudio', 'wave', 'numpy', 
-    'transformers', 'scipy'
-]
-
-conda_command = 'conda install'
-pip_command = 'pip install'
-
-for library in required_libraries:
-    try:
-        importlib.import_module(library)
-    except ImportError:
-        print(f'{library} not found. Installing...')
-        if 'conda' in subprocess.run(['which', 'python'], capture_output=True, text=True).stdout:
-            subprocess.run([conda_command, library, '-y'])
-        else:
-            subprocess.run([pip_command, library])
-
-print('All required libraries are installed.')
+try:
+    with open('requirements.txt', 'r') as file:
+        for line in file:
+            # Remove leading/trailing whitespaces and comments
+            package_name = line.strip().split('#')[0].strip()
+            
+            if package_name:
+                try:
+                    # Attempt to import the package
+                    __import__(package_name)
+                    print(f"{package_name} is installed.")
+                except ImportError:
+                    print(f"{package_name} is not installed.")
+except FileNotFoundError:
+    print("requirements.txt file not found.")
 
 

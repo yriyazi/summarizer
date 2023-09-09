@@ -1,6 +1,7 @@
 torch
 pyaudio
 wave
-numpy==1.21.2
-transformers==4.11.0
-scipy==1.7.3
+numpy
+transformers
+scipy
+re
