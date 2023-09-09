@@ -23,11 +23,9 @@ pip install -r requirements.txt
 
 3. Ensure you have audio files for testing in the `audio_files` directory.
 
-4. Execute the provided Python script:
+4. open openai.ipynb
 
-```bash
-python main.py
-```
+
 
 ## Usage
 
